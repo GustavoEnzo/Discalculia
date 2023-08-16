@@ -12,16 +12,16 @@ public class BarTime : MonoBehaviour
     public Color warningColor = Color.red;
     private float initialWidth;
     private Image timeBarImage;
-    private RectTransform anchor;
+    // private RectTransform anchor;
     private bool isTimeUp = false;
-    public GameObject congratulationsPanel; // referência ao painel de parabéns
+    public GameObject congratulationsPanel; // referï¿½ncia ao painel de parabï¿½ns
     private bool isPaused = false;
 
     void Start()
     {
         timeBarImage = GetComponent<Image>();
         initialWidth = timeBarImage.rectTransform.rect.width;
-        anchor = transform.Find("Anchor").GetComponent<RectTransform>();
+        // anchor = transform.Find("Anchor").GetComponent<RectTransform>();
     }
 
     void Update()
@@ -53,13 +53,13 @@ public class BarTime : MonoBehaviour
             float newWidth = percentLeft * initialWidth;
             timeBarImage.rectTransform.sizeDelta = new Vector2(newWidth, timeBarImage.rectTransform.rect.height);
 
-            // Calcula a nova posição da barra de tempo
+            // Calcula a nova posiï¿½ï¿½o da barra de tempo
             float newPosX = -(initialWidth / 2f) + (newWidth / 2f);
             timeBarImage.rectTransform.anchoredPosition = new Vector2(newPosX, timeBarImage.rectTransform.anchoredPosition.y);
             if (timeLeft <= 0f)
             {
                 isTimeUp = true;
-                congratulationsPanel.SetActive(true); // ativa o painel de parabéns
+                congratulationsPanel.SetActive(true); // ativa o painel de parabï¿½ns
             }
         }
     }
@@ -69,7 +69,7 @@ public class BarTime : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    // Função para retomar a barra de tempo
+    // Funï¿½ï¿½o para retomar a barra de tempo
     public void ResumeBar()
     {
         isPaused = false;
