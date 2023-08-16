@@ -5,19 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/TelaInicial.unity
-    guid: d8740ba208a622f4cb8d0df93fff0061
+    path: Assets/Disc/Levels/Level01.unity
+    guid: 8b5b723a4339c10478249f80644c44de
   - enabled: 1
-    path: Assets/Scenes/Fase2.unity
-    guid: cafbf0420f77f834fbe3920b8913dbfd
+    path: Assets/Disc/Levels/Level02.unity
+    guid: 75e91c16d0685c949b022db7a5131d50
   - enabled: 1
-    path: Assets/Scenes/Fase2.unity
-    guid: c2b6e499d84a7864091773e4ab0b82b2
+    path: Assets/Disc/Levels/Level03.unity
+    guid: 50ee8b96b0990b14897d5dc5a875d7b6
   m_configObjects: {}
