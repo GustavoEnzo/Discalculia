@@ -17,14 +17,20 @@ public class GameManagerBehaviour : MonoBehaviour
     [SerializeField] GameObject nextPanel;
     [SerializeField] GameObject inGamePanel;
     [SerializeField] GameObject resetPanel;
+    [SerializeField] GameObject notimePanel;
     [SerializeField] GameObject congratsPanel;
+    [SerializeField] GameObject pausePanel;
     [SerializeField] Material timeBarMaterial;
 
     private bool inGame = false;
+    private bool isPaused = false;
     private float max;
+    public List<GameObject> levelObjects = new List<GameObject>();
 
     public int currentLevel = 0, totalLevels = 0;
     private bool questionMode;
+    private ScreenOrientation targetOrientation = ScreenOrientation.LandscapeLeft;
+
 
     private void Awake()
     {
@@ -43,34 +49,38 @@ public class GameManagerBehaviour : MonoBehaviour
         Init();
     }
     private void Init()
-    {
+    {   
+
         max = turnTimer;
-        totalLevels = 3;
+        totalLevels = 7;
     }
     private void FixedUpdate()
     {
-        if (questionMode)
-        {
-            if (inGame && turnTimer >= 0)
-            {
-                turnTimer = turnTimer >= 0 ? turnTimer - Time.fixedDeltaTime : 0;
-                percentage = ((turnTimer == 0) ? 0 : turnTimer) / max;
+        if(!isPaused) { 
+            if (questionMode)
+            {   
+                if (inGame && turnTimer >= 0)
+                {
+                    turnTimer = turnTimer >= 0 ? turnTimer - Time.fixedDeltaTime : 0;
+                    percentage = ((turnTimer == 0) ? 0 : turnTimer) / max;
+                }
+                else
+                {
+                    percentage = 1;
+                    turnTimer = 0;
+                    inGame = false;
+                }
+                timeBarMaterial.SetFloat("_percentage", percentage);
             }
-            else
-            {
-                percentage = 1;
-                turnTimer = 0;
-                inGame = false;
-            }
-            timeBarMaterial.SetFloat("_percentage", percentage);
         }
+        
     }
     private void Update()
     {
         if (questionMode)
         {
             if (inGame && percentage <= 0)
-                ResetMenu();
+                TimeMenu();
         }
     }
     // PUBLIC METHODS
@@ -79,6 +89,10 @@ public class GameManagerBehaviour : MonoBehaviour
         startPanel.SetActive(false);
         resetPanel.SetActive(false);
         inGamePanel.SetActive(true);
+        notimePanel.SetActive(false);
+        isPaused = false;
+        pausePanel.SetActive(false);
+        LoadLevel(currentLevel);
 
         inGame = true;
 
@@ -91,6 +105,11 @@ public class GameManagerBehaviour : MonoBehaviour
         inGamePanel.SetActive(false);
         resetPanel.SetActive(true);
     }
+    private void TimeMenu()
+    {
+        inGamePanel.SetActive(false);
+        notimePanel.SetActive(true);
+    }
 
     //LEVEL MANAGER
     public void NextLevel()
@@ -98,12 +117,21 @@ public class GameManagerBehaviour : MonoBehaviour
         if (currentLevel < totalLevels - 1)
         {
             currentLevel++;
-            SceneManager.LoadScene(currentLevel);
+            LoadLevel(currentLevel);
             nextPanel.SetActive(false);
             StartBtn();
         }
         else
+        {   
             Congratulation();
+            
+        }
+    }
+    public void LoadLevel(int level)
+    {   
+        levelObjects.ForEach(obj => obj.SetActive(false));
+        levelObjects[level].SetActive(true);
+        
     }
     public void ResetTime()
     {
@@ -111,9 +139,9 @@ public class GameManagerBehaviour : MonoBehaviour
         timeBarMaterial.SetFloat("_percentage", 1);
         turnTimer = max;
     }
+
     public void Congratulation()
     {
-        nextPanel.SetActive(false);
         congratsPanel.SetActive(true);
         Debug.Log("in last level.");
     }
@@ -124,4 +152,24 @@ public class GameManagerBehaviour : MonoBehaviour
         Instance.StartBtn();
         congratsPanel.SetActive(false);
     }
+    public void Pause()
+    {
+        isPaused = true;
+        pausePanel.SetActive(true);
+    }
+    public void Resume()
+    {
+        isPaused = false;
+        pausePanel.SetActive(false);
+    }
+    public void Exit()
+    {
+        resetPanel.SetActive(false);
+        inGamePanel.SetActive(false);
+        startPanel.SetActive(true);
+        congratsPanel.SetActive(false);
+        currentLevel= 0;
+        
+    }
+
 }

@@ -5,13 +5,26 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Disc/Levels/Level01.unity
+  - enabled: 0
+    path: Assets/Shaders/Timebar.unity
     guid: 8b5b723a4339c10478249f80644c44de
   - enabled: 1
+    path: Assets/Disc/Levels/Level01.unity
+    guid: cc03d7c69faa4a549bf5ae240d8a7ebb
+  - enabled: 0
     path: Assets/Disc/Levels/Level02.unity
-    guid: 75e91c16d0685c949b022db7a5131d50
-  - enabled: 1
+    guid: 05b5ad78a48725f4b9d485040871e4a3
+  - enabled: 0
     path: Assets/Disc/Levels/Level03.unity
-    guid: 50ee8b96b0990b14897d5dc5a875d7b6
-  m_configObjects: {}
+    guid: 8309b1becb39d0b479785eb785c44b72
+  - enabled: 0
+    path: Assets/Disc/Levels/Level04.unity
+    guid: f0397464da769b74c9400e5f91b7a0d8
+  - enabled: 0
+    path: Assets/Disc/Levels/Level01.unity
+    guid: cc03d7c69faa4a549bf5ae240d8a7ebb
+  m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 82b6199746c1bc64799e500aac35eb83, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 8fad6260acf643745ac6dacabd283bdd, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 11399c7a3a147ea46ab1319ccf614d9e, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 989436ab98ddc574097fc5433f4fa362, type: 2}

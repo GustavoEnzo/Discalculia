@@ -10,7 +10,8 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Inconsolata
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6c3fa022e3954234991e5dae2c14a938, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
